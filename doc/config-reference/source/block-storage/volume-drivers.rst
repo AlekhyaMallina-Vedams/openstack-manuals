@@ -56,6 +56,7 @@ Volume drivers
    drivers/xio-volume-driver.rst
    drivers/zfssa-iscsi-driver.rst
    drivers/zfssa-nfs-driver.rst
+   drivers/kaminario-driver.rst
 
 To use different volume drivers for the cinder-volume service, use the
 parameters described in these sections.

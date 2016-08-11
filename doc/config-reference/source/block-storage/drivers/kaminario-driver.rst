@@ -1,5 +1,5 @@
 ===================================================
-Dot Hill AssuredSAN Fibre Channel and iSCSI drivers
+Kaminario SAN Fibre Channel and iSCSI drivers
 ===================================================
 
 The ``DotHillFCDriver`` and ``DotHillISCSIDriver`` volume drivers allow
@@ -177,7 +177,6 @@ Driver-specific options
 The following table contains the configuration options that are specific
 to the Dot Hill drivers.
 
-#.. include:: ../../tables/cinder-dothill.rst
 .. list-table:: **Quota descriptions**
    :widths: 10 25 10
    :header-rows: 1

@@ -177,19 +177,5 @@ Driver-specific options
 The following table contains the configuration options that are specific
 to the Dot Hill drivers.
 
-.. list-table:: **Quota descriptions**
-   :widths: 10 25 10
-   :header-rows: 1
+.. include:: ../../tables/cinder-kaminario.rst
 
-   * - Quota Name
-     - Defines the number of
-     - Service
-   * - Gigabytes
-     - Volume gigabytes allowed for each project
-     - Block Storage
-   * - Instances
-     - Instances allowed for each project.
-     - Compute
-   * - Injected File Content Bytes
-     - Content bytes allowed for each injected file.
-     - Compute

@@ -180,16 +180,14 @@ to the Dot Hill drivers.
      - Description
    * - **[DEFAULT]**
      -
-   * - ``dothill_api_protocol`` = ``https``
-     - (String) DotHill API interface protocol.
-   * - ``dothill_backend_name`` = ``A``
+   * - ``kaminario_api_protocol`` = ``https``
+     - (String) Kaminario API interface protocol.
+   * - ``kaminario_backend_name`` = ``A``
      - (String) Pool or Vdisk name to use for volume creation.
-   * - ``dothill_backend_type`` = ``virtual``
+   * - ``kaminario_backend_type`` = ``virtual``
      - (String) linear (for Vdisk) or virtual (for Pool).
-   * - ``dothill_iscsi_ips`` =
-     - (List) List of comma-separated target iSCSI IP addresses.
-   * - ``dothill_verify_certificate`` = ``False``
-     - (Boolean) Whether to verify DotHill array SSL certificate.
-   * - ``dothill_verify_certificate_path`` = ``None``
-     - (String) DotHill array SSL certificate path.
+   * - ``kaminario_verify_certificate`` = ``False``
+     - (Boolean) Whether to verify Kaminario array SSL certificate.
+   * - ``kaminario_verify_certificate_path`` = ``None``
+     - (String) Kaminario array SSL certificate path.
 

@@ -87,7 +87,7 @@ Configuring the array
    .. code-block:: ini
 
        [pool-a]
-       dothill_backend_name = A
+       kaminario_backend_name = A
        volume_backend_name = kaminario-array
        volume_driver = cinder.volume.drivers.kaminario.kaminario_iscsi.KaminarioISCSIDriver
        san_ip = 10.1.2.3
@@ -96,7 +96,7 @@ Configuring the array
        
 
        [pool-b]
-       dothill_backend_name = B
+       kaminario_backend_name = B
        volume_backend_name = kaminario-array
        volume_driver = cinder.volume.drivers.kaminario.kaminario_iscsi.KaminarioISCSIDriver
        san_ip = 10.1.2.3
@@ -108,7 +108,7 @@ Configuring the array
    .. code-block:: ini
 
       [pool-a]
-      dothill_backend_name = A
+      kaminario_backend_name = A
       volume_backend_name = kaminario-array
       volume_driver = cinder.volume.drivers.kaminario.kaminario_fc.KaminarioFCDriver
       san_ip = 10.1.2.3
@@ -116,7 +116,7 @@ Configuring the array
       san_password = admin
 
       [pool-b]
-      dothill_backend_name = B
+      kaminario_backend_name = B
       volume_backend_name = kaminario-array
       volume_driver = cinder.volume.drivers.kaminario.kaminario_fc.KaminarioFCDriver
       san_ip = 10.1.2.3
@@ -162,7 +162,7 @@ Configuring the array
 
        $ cinder type-create kaminario
 
-       $ cinder type-key dothill set volume_backend_name=kaminario-array
+       $ cinder type-key kaminario set volume_backend_name=kaminario-array
 
 #. After modifying ``cinder.conf``, restart the cinder-volume service.
 

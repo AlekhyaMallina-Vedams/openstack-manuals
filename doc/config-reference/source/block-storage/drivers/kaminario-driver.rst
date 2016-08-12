@@ -172,20 +172,24 @@ Driver-specific options
 The following table contains the configuration options that are specific
 to the Dot Hill drivers.
 
-.. list-table:: **Quota descriptions**
-   :widths: 10 25 10
+.. list-table:: Description of Dot Hill volume driver configuration options
    :header-rows: 1
+   :class: config-ref-table
 
-   * - Quota Name
-     - Defines the number of
-     - Service
-   * - Gigabytes
-     - Volume gigabytes allowed for each project
-     - Block Storage
-   * - Instances
-     - Instances allowed for each project.
-     - Compute
-   * - Injected File Content Bytes
-     - Content bytes allowed for each injected file.
-     - Compute
+   * - Configuration option = Default value
+     - Description
+   * - **[DEFAULT]**
+     -
+   * - ``dothill_api_protocol`` = ``https``
+     - (String) DotHill API interface protocol.
+   * - ``dothill_backend_name`` = ``A``
+     - (String) Pool or Vdisk name to use for volume creation.
+   * - ``dothill_backend_type`` = ``virtual``
+     - (String) linear (for Vdisk) or virtual (for Pool).
+   * - ``dothill_iscsi_ips`` =
+     - (List) List of comma-separated target iSCSI IP addresses.
+   * - ``dothill_verify_certificate`` = ``False``
+     - (Boolean) Whether to verify DotHill array SSL certificate.
+   * - ``dothill_verify_certificate_path`` = ``None``
+     - (String) DotHill array SSL certificate path.
 

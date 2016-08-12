@@ -2,21 +2,17 @@
 Kaminario SAN Fibre Channel and iSCSI drivers
 ===================================================
 
-The ``DotHillFCDriver`` and ``DotHillISCSIDriver`` volume drivers allow
-Dot Hill arrays to be used for block storage in OpenStack deployments.
+The ``Kaminario FCDriver`` and ``Kaminario ISCSIDriver`` volume drivers allow
+Kaminario arrays to be used for block storage in OpenStack deployments.
 
 System requirements
 ~~~~~~~~~~~~~~~~~~~
 
-To use the Dot Hill drivers, the following are required:
+To use the Kaminario drivers, the following are required:
 
--  Dot Hill AssuredSAN array with:
+-  Kaminario array with:
 
    -  iSCSI or FC host interfaces
-
-   -  G22x firmware or later
-
-   -  Appropriate licenses for the snapshot and copy volume features
 
 -  Network connectivity between the OpenStack host and the array
    management interfaces
@@ -40,17 +36,17 @@ Supported operations
 
 -  Extend a volume.
 
--  Migrate a volume with back-end assistance.
-
 -  Retype a volume.
 
 -  Manage and unmanage a volume.
+
+-  Replication Support
 
 Configuring the array
 ~~~~~~~~~~~~~~~~~~~~~
 
 #. Verify that the array can be managed via an HTTPS connection. HTTP can
-   also be used if ``dothill_api_protocol=http`` is placed into the
+   also be used if ``kaminario_api_protocol=http`` is placed into the
    appropriate sections of the ``cinder.conf`` file.
 
    Confirm that virtual pools A and B are present if you plan to use
@@ -66,7 +62,7 @@ Configuring the array
    entry consists of a unique section name, surrounded by square brackets,
    followed by options specified in ``key=value`` format.
 
-   -  The ``dothill_backend_name`` value specifies the name of the storage
+   -  The ``kaminario_backend_name`` value specifies the name of the storage
       pool or vdisk on the array.
 
    -  The ``volume_backend_name`` option value can be a unique value, if
@@ -92,21 +88,20 @@ Configuring the array
 
        [pool-a]
        dothill_backend_name = A
-       volume_backend_name = dothill-array
-       volume_driver = cinder.volume.drivers.dothill.dothill_iscsi.DotHillISCSIDriver
+       volume_backend_name = kaminario-array
+       volume_driver = cinder.volume.drivers.kaminario.kaminario_iscsi.KaminarioISCSIDriver
        san_ip = 10.1.2.3
-       san_login = manage
-       san_password = !manage
-       dothill_iscsi_ips = 10.2.3.4,10.2.3.5
+       san_login = admin
+       san_password = admin
+       
 
        [pool-b]
        dothill_backend_name = B
-       volume_backend_name = dothill-array
-       volume_driver = cinder.volume.drivers.dothill.dothill_iscsi.DotHillISCSIDriver
+       volume_backend_name = kaminario-array
+       volume_driver = cinder.volume.drivers.kaminario.kaminario_iscsi.KaminarioISCSIDriver
        san_ip = 10.1.2.3
-       san_login = manage
-       san_password = !manage
-       dothill_iscsi_ips = 10.2.3.4,10.2.3.5
+       san_login = admin
+       san_password = admin
 
    **Fibre Channel example back-end entries**
 
@@ -114,30 +109,30 @@ Configuring the array
 
       [pool-a]
       dothill_backend_name = A
-      volume_backend_name = dothill-array
-      volume_driver = cinder.volume.drivers.dothill.dothill_fc.DotHillFCDriver
+      volume_backend_name = kaminario-array
+      volume_driver = cinder.volume.drivers.kaminario.kaminario_fc.KaminarioFCDriver
       san_ip = 10.1.2.3
-      san_login = manage
-      san_password = !manage
+      san_login = admin
+      san_password = admin
 
       [pool-b]
       dothill_backend_name = B
-      volume_backend_name = dothill-array
-      volume_driver = cinder.volume.drivers.dothill.dothill_fc.DotHillFCDriver
+      volume_backend_name = kaminario-array
+      volume_driver = cinder.volume.drivers.kaminario.kaminario_fc.KaminarioFCDriver
       san_ip = 10.1.2.3
-      san_login = manage
-      san_password = !manage
+      san_login = admin
+      san_password = admin
 
 #. If any ``volume_backend_name`` value refers to a vdisk rather than a
    virtual pool, add an additional statement
-   ``dothill_backend_type = linear`` to that back-end entry.
+   ``kaminario_backend_type = linear`` to that back-end entry.
 
 #. If HTTPS is not enabled in the array, include
-   ``dothill_api_protocol = http`` in each of the back-end definitions.
+   ``kaminario_api_protocol = http`` in each of the back-end definitions.
 
 #. If HTTPS is enabled, you can enable certificate verification with the
-   option ``dothill_verify_certificate=True``. You may also use the
-   ``dothill_verify_certificate_path`` parameter to specify the path to a
+   option ``kaminario_verify_certificate=True``. You may also use the
+   ``kaminario_verify_certificate_path`` parameter to specify the path to a
    CA\_BUNDLE file containing CAs other than those in the default list.
 
 #. Modify the ``[DEFAULT]`` section of the ``cinder.conf`` file to add an
@@ -152,22 +147,22 @@ Configuring the array
        [DEFAULT]
          ...
        enabled_backends = pool-a,pool-b
-       default_volume_type = dothill
+       default_volume_type = kaminario
          ...
 
 #. Create a new volume type for each distinct ``volume_backend_name`` value
    that you added to cinder.conf. The example below assumes that the same
-   ``volume_backend_name=dothill-array`` option was specified in all of the
-   entries, and specifies that the volume type ``dothill`` can be used to
+   ``volume_backend_name=kaminario-array`` option was specified in all of the
+   entries, and specifies that the volume type ``kaminario`` can be used to
    allocate volumes from any of them.
 
    **Example of creating a volume type**
 
    .. code-block:: console
 
-       $ cinder type-create dothill
+       $ cinder type-create kaminario
 
-       $ cinder type-key dothill set volume_backend_name=dothill-array
+       $ cinder type-key dothill set volume_backend_name=kaminario-array
 
 #. After modifying ``cinder.conf``, restart the cinder-volume service.
 

@@ -172,7 +172,7 @@ Driver-specific options
 The following table contains the configuration options that are specific
 to the Dot Hill drivers.
 
-.. list-table:: Description of Dot Hill volume driver configuration options
+.. list-table:: Description of Kaminario volume driver configuration options
    :header-rows: 1
    :class: config-ref-table
 
